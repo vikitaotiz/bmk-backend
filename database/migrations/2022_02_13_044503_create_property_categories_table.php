@@ -16,6 +16,7 @@ class CreatePropertyCategoriesTable extends Migration
         Schema::create('property_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('description');
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ class PropertyCategoriesController extends Controller
      */
     public function index()
     {
-        return PropertyCategory::all();
+        return PropertyCategory::with('properties')->get();
     }
 
     /**
