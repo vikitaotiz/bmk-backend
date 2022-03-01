@@ -14,7 +14,7 @@ class CarsController extends Controller
      */
     public function index()
     {
-        return Car::all();
+        return Car::with('car_category')->with('country')->get();
     }
 
     /**

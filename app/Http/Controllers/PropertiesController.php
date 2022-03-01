@@ -14,7 +14,7 @@ class PropertiesController extends Controller
      */
     public function index()
     {
-        return Property::all();
+        return Property::with('property_category')->with('country')->get();
     }
 
     /**

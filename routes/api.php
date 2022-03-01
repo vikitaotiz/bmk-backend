@@ -8,6 +8,8 @@ use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\CarCategoriesController;
 use App\Http\Controllers\CarsController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\RolesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +30,9 @@ use Illuminate\Support\Facades\Route;
 // sign in and sign up
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/user', [AuthController::class, 'user']);
+
 // property category
 Route::get('/property_categories', [PropertyCategoriesController::class, 'index']);
 Route::get('/property_categories/{id}', [PropertyCategoriesController::class, 'show']);
@@ -60,11 +65,11 @@ Route::get('/addresses/search/{name}', [AddressesController::class, 'search']);
 // Protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
     // logout
-    Route::post('/logout', [AuthController::class, 'logout']);
+    // Route::post('/logout', [AuthController::class, 'logout']);
     // property categories
-    Route::post('/property_categgories', [PropertyCategoriesController::class, 'store']);
-    Route::put('/property_categgories/{id}', [PropertyCategoriesController::class, 'update']);
-    Route::delete('/property_categgories/{id}', [PropertyCategoriesController::class, 'destroy']);
+    Route::post('/property_categories', [PropertyCategoriesController::class, 'store']);
+    Route::put('/property_categories/{id}', [PropertyCategoriesController::class, 'update']);
+    Route::delete('/property_categories/{id}', [PropertyCategoriesController::class, 'destroy']);
     // properties
     Route::post('/properties', [PropertiesController::class, 'store']);
     Route::put('/properties/{id}', [PropertiesController::class, 'update']);
@@ -89,6 +94,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/addresses', [AddressesController::class, 'store']);
     Route::put('/addresses/{id}', [AddressesController::class, 'update']);
     Route::delete('/addresses/{id}', [AddressesController::class, 'destroy']);
+    // users
+    // Route::get('/users', [AuthController::class, 'all_users']);
+    // Route::post('/create_user', [AuthController::class, 'create_users']);
+    Route::resource('roles', RolesController::class);
+    Route::resource('users', UsersController::class);
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

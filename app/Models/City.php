@@ -20,4 +20,14 @@ class City extends Model
     {
         return $this->hasMany(Car::class);
     }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
+    }
 }

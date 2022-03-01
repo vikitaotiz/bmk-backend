@@ -14,7 +14,7 @@ class AddressesController extends Controller
      */
     public function index()
     {
-        return Address::all();
+        return Address::with('city')->get();
     }
 
     /**

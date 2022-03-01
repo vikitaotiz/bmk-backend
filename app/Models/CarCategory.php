@@ -9,6 +9,8 @@ class CarCategory extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function cars()
     {
         return $this->hasMany(Car::class);
