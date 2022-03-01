@@ -40,7 +40,15 @@ class PropertyCategoriesController extends Controller
      */
     public function show($id)
     {
-        return PropertyCategory::find($id);
+        $category = PropertyCategory::find($id);
+
+        $propertycategory = array(
+            "category" => $category->name,
+            "category_description" => $category->description,
+            "properties" => $category->properties
+        );
+
+        return $propertycategory;
     }
 
     /**
