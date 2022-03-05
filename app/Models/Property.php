@@ -16,8 +16,8 @@ class Property extends Model
         return $this->belongsTo(PropertyCategory::class);
     }
 
-    public function country()
+    public function address()
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(Address::class);
     }
 }

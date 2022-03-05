@@ -19,6 +19,7 @@ class CreateCarsTable extends Migration
             $table->text('description');
             $table->integer('car_category_id');
             $table->integer('country_id');
+            $table->boolean('booked')->default(false);
             $table->timestamps();
         });
     }

@@ -16,9 +16,12 @@ class CreatePropertiesTable extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('type');
+            $table->decimal('amount', $precision = 8, $scale = 2);
             $table->text('description');
             $table->integer('property_category_id');
-            $table->integer('country_id');
+            $table->integer('address_id');
+            $table->boolean('booked')->default(false);
             $table->timestamps();
         });
     }

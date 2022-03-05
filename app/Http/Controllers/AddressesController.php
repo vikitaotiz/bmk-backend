@@ -17,6 +17,20 @@ class AddressesController extends Controller
         return Address::with('city')->get();
     }
 
+    public function create(Request $request)
+    {
+        $request->validate([
+            'booking_type' => 'required',
+            'guests' => 'required',
+            'days' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'user_id' => 'required',
+        ]);
+
+        return Booking::create($request->all());
+    }
+
     /**
      * Store a newly created resource in storage.
      *

@@ -9,6 +9,13 @@ class Address extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
+    public function properties()
+    {
+        return $this->hasMany(Property::class);
+    }
+
     public function city()
     {
         return $this->belongsTo(City::class);

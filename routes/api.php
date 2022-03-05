@@ -10,6 +10,7 @@ use App\Http\Controllers\CarsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\BookingsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -65,7 +66,7 @@ Route::get('/addresses/search/{name}', [AddressesController::class, 'search']);
 // Protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
     // logout
-    // Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/logout', [AuthController::class, 'logout']);
     // property categories
     Route::post('/property_categories', [PropertyCategoriesController::class, 'store']);
     Route::put('/property_categories/{id}', [PropertyCategoriesController::class, 'update']);
@@ -99,7 +100,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // Route::post('/create_user', [AuthController::class, 'create_users']);
     Route::resource('roles', RolesController::class);
     Route::resource('users', UsersController::class);
+    
+    // bookings
+    Route::post('/bookings', [BookingsController::class, 'store']);
 });
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
